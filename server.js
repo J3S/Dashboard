@@ -3,6 +3,8 @@
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://daw:daw@ds019746.mlab.com:19746/dashboard'); 
 var Tarea     = require('./models/tarea');
+var Proyecto     = require('./models/proyecto');
+var Usuario     = require('./models/usuario');
 
 // call the packages we need
 var express    = require('express');        // call express
@@ -110,6 +112,50 @@ router.route('/tareas/:tarea_id')
     });
 
 
+
+router.route('/proyectos')
+
+    .get(function(req, res) {
+        Proyecto.find(function(err, proyectos) {
+            if (err)
+                res.send(err);
+
+            res.json(proyectos);
+        });
+    });
+
+
+router.route('/proyectos/:proyecto_id')
+
+    .get(function(req, res) {
+        Proyecto.findById(req.params.proyecto_id, function(err, proyecto) {
+            if (err)
+                res.send(err);
+            res.json(proyecto);
+        });
+    });
+
+
+router.route('/usuarios')
+
+    .get(function(req, res) {
+        Usuario.find(function(err, usuarios) {
+            if (err)
+                res.send(err);
+
+            res.json(usuarios);
+        });
+    });
+
+router.route('/usuarios/:usuario_id')
+
+    .get(function(req, res) {
+        Usuario.findById(req.params.usuario_id, function(err, usuario) {
+            if (err)
+                res.send(err);
+            res.json(usuario);
+        });
+    });
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
