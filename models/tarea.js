@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
-var tareaSchema = new mongoose.Schema({
+var TareaSchema = new mongoose.Schema({
 	titulo: String,
 	descripcion: String,
 	responsable: String,
 	estado: Number
 });
 
-mongoose.model('Tarea', tareaSchema)
+module.exports = mongoose.model('Tarea', TareaSchema)
